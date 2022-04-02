@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/faq', [\App\Http\Controllers\HomeController::class, 'faq'])->name('home_faq');
 Route::get('/page', [\App\Http\Controllers\PageController::class, 'index'])->name('page');
+Route::get('/page_see/{recomplex_id}', [\App\Http\Controllers\PageController::class, 'page_see'])->name('page_see');
 Route::get('/config', [\App\Http\Controllers\ConfigController::class, 'index']);
 
 Route::middleware('guest')->group(function(){
@@ -29,7 +30,8 @@ Route::middleware('guest')->group(function(){
 });
 
 Route::group(['middleware'=> ['auth']], function (){
-
+    Route::get('/add_flat/{user_id}/{flat_id}', [\App\Http\Controllers\PageController::class, 'add_flat'])->name('add_flat');
+    Route::get('/application/{user_id}', [\App\Http\Controllers\PageController::class, 'get_application'])->name('application');
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=> ['auth']], function (){
@@ -39,6 +41,8 @@ Route::group(['prefix'=>'admin', 'middleware'=> ['auth']], function (){
     Route::resource('/hometype', \App\Http\Controllers\HometypeController::class);
     Route::resource('/recomplex', \App\Http\Controllers\RecomplexController::class);
     Route::resource('/flat', \App\Http\Controllers\FlatController::class);
+    Route::get('/flatreport', [\App\Http\Controllers\FlatController::class, 'flat_report'])->name('flat_report');
+    Route::get('/flatlist', [\App\Http\Controllers\FlatController::class, 'flat_list'])->name('flat_list');
 
 });
 

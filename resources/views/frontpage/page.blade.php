@@ -23,9 +23,9 @@
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ $recomplex->district->name }}</div>
                             <div class="badge bg-success bg-gradient rounded-pill mb-2">{{ $recomplex->hometype->name }}</div>
                             <div class="badge bg-black bg-gradient rounded-pill mb-2">{{ $recomplex->floor->name }}</div>
-                            <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">{{ $recomplex->name }}</h5></a>
+                            <a class="text-decoration-none link-dark stretched-link" href="{{route('page_see',$recomplex->id)}}"><h5 class="card-title mb-3">{{ $recomplex->name }}</h5></a>
                             <p class="card-text mb-0">{!! $recomplex->description !!} </p>
-                            <a class="text-decoration-none" href="#!">
+                            <a class="text-decoration-none" href="{{route('page_see',$recomplex->id)}}">
                                 Толығырақ
                                 <i class="bi bi-arrow-right"></i>
                             </a>

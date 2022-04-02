@@ -34,8 +34,9 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                 @if(Auth::user()->isAdmin())
                                 <li><a class="dropdown-item" href="{{route('admin')}}">Администратор беті</a></li>
+                                    <li><a class="dropdown-item" href="{{route('application',Auth::user()->id)}}">Менің жазбаларым</a></li>
                                 @elseif(Auth::user()->isUser())
-                                <li><a class="dropdown-item" href="">Менің жазбаларым</a></li>
+                                <li><a class="dropdown-item" href="{{route('application',Auth::user()->id)}}">Менің жазбаларым</a></li>
                                 @endif
                                 <li><a class="dropdown-item" href="{{ route('auth.logout') }}">Шығу</a></li>
                             </ul>

@@ -6,6 +6,7 @@ use App\Models\Flat;
 use App\Models\Recomplex;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FlatController extends Controller
 {
@@ -91,5 +92,20 @@ class FlatController extends Controller
     {
         $flat->delete();
         return redirect()->route('flat.index')->with('info', 'Сәтті жойылды!!!');
+    }
+
+    public function flat_list(){
+        $user_flats=DB::table('users_flats as uf')
+            ->leftJoin('flats as f','f.id', 'uf.flat_id')
+            ->leftJoin('rooms as r','r.id', 'f.room_id')
+            ->leftJoin('statuses as st','st.id', 'uf.status_id')
+            ->leftJoin('recomplexes as re','re.id', 'f.recomplex_id')
+            ->select('re.name as rename', 'f.totalarea', 'r.name as rname', 'st.name as stname', 're.price')
+            ->get();
+        return view('flat.applications', compact('user_flats'));
+
+    }
+    public function flat_report(){
+
     }
 }

@@ -148,7 +148,7 @@
         </li><!-- End Profile Page Nav -->
 {{--        <li class="nav-heading">Әкімшілік</li>--}}
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a class="nav-link collapsed" href="{{ route('flat_list') }}">
                 <i class="bi bi-envelope"></i>
                 <span>Өтініштер</span>
             </a>
