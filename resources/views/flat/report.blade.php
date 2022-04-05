@@ -86,7 +86,7 @@
                                 @if($rname<>$user_flat->rename)
 
                                 <tr class="text-center">
-                                    <td scope="row">{{ $k+1 }}</td>
+                                    <td scope="row">{{ $counter }}</td>
                                     <td>{{ $user_flat->rename }}</td>
                                     @foreach($user_flats as $user_flat1)
                                         @if($user_flat->rename==$user_flat1->rename)
@@ -152,7 +152,7 @@
                                         $rname=$user_flat->rename;
                                     }
                                 @endphp
-
+                            @php $counter++; @endphp
                             @endforeach
 
 
