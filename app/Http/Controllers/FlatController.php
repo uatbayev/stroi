@@ -106,7 +106,7 @@ class FlatController extends Controller
             ->select('re.name as rename', 'f.totalarea', 'r.name as rname', 'st.name as stname', 're.price', 'us.lastname','us.firstname', 'us.patronymic', 'us.tel', 'uf.id', 'uf.status_id')
             ->get();
 
-        dd($user_flats);
+
         return view('flat.applications', compact('user_flats', 'statuses'));
 
     }
@@ -125,7 +125,7 @@ class FlatController extends Controller
             ->orderBy('re.name')
             ->orderBy('r.name')
             ->get();
-//        dd($user_flats);
+        dd($user_flats);
         //$recomplexes=Recomplex::all();
         $recomplexes_flat=DB::table('flats as f')->leftJoin('recomplexes as re','re.id', 'f.recomplex_id')
             ->select('re.price as price','re.name as name','f.room_id','f.totalarea as totalarea')
