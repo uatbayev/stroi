@@ -1,14 +1,14 @@
 @extends('back.adminp')
 @section('title')
-    Пәтерлер
+    Өтініштер
 @endsection
 @section('content')
     <div class="pagetitle">
-        <h1>Пәтерлер</h1>
+        <h1>Өтініштер </h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin') }}">Басты бет</a></li>
-                <li class="breadcrumb-item active">Пәтерлер</li>
+                <li class="breadcrumb-item active">Өтініштер</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -29,6 +29,8 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Қолданушы</th>
+                                <th scope="col">Телефон нөмірі</th>
                                 <th scope="col">Тұрғын үй</th>
                                 <th scope="col">Бағасы</th>
                                 <th scope="col">Бөлме саны</th>
@@ -41,6 +43,9 @@
                             @foreach($user_flats as $k=>$user_flat)
                                 <tr>
                                     <td scope="row">{{ $k+1 }}</td>
+
+                                    <td>{{ $user_flat->lastname }} {{ $user_flat->firstname }}</td>
+                                    <td>{{ $user_flat->tel }}</td>
                                     <td>{{ $user_flat->rename }}</td>
                                     <td>{{ $user_flat->price }} т.</td>
                                     <td>{{ $user_flat->rname }}</td>
@@ -54,6 +59,38 @@
 {{--                                            @method('DELETE')--}}
 {{--                                            <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-3-line"></i></button>--}}
 {{--                                        </form>--}}
+                                        <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal_{{$user_flat->id}}">
+                                            <i class="ri-edit-box-line"></i>
+                                        </a>
+                                        <div class="modal fade" id="basicModal_{{$user_flat->id}}" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Статусты өзгерту</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('flat_save') }}" method="post">
+                                                            @csrf
+                                                            <div class="col-md-4 mb-3">
+                                                                <input type="hidden" name="user_flat_id" value="{{$user_flat->id}}">
+                                                                <label class="form-label">Статус</label>
+                                                                <select class="form-select" name="status_id">
+                                                                    @foreach($statuses as $status)
+                                                                        <option value="{{ $status->id }}" {{ old('status_id', $user_flat->status_id)==$status->id ? 'selected':'' }}>{{ $status->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Жабу</button>
+                                                            <button type="submit" class="btn btn-primary">Сақтау</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -67,4 +104,5 @@
             </div>
         </div>
     </section>
+
 @endsection

@@ -43,6 +43,7 @@ Route::group(['prefix'=>'admin', 'middleware'=> ['auth']], function (){
     Route::resource('/flat', \App\Http\Controllers\FlatController::class);
     Route::get('/flatreport', [\App\Http\Controllers\FlatController::class, 'flat_report'])->name('flat_report');
     Route::get('/flatlist', [\App\Http\Controllers\FlatController::class, 'flat_list'])->name('flat_list');
+    Route::post('/flatsave', [\App\Http\Controllers\FlatController::class, 'flat_save'])->name('flat_save');
 
 });
 

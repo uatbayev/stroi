@@ -22,4 +22,5 @@ class Recomplex extends Model
     public function hometype(){
         return $this->belongsTo(Hometype::class);
     }
+
 }

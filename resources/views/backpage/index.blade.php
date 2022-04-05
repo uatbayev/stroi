@@ -29,7 +29,7 @@
                                         <i class="bi bi-bar-chart"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
+                                        <h6>{{$users_flats_total}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                         <i class="bi bi-house"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>100</h6>
+                                        <h6>{{$recomplexes_total}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
+                                        <h6>{{$users_total}}</h6>
                                     </div>
                                 </div>
 

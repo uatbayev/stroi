@@ -1,14 +1,14 @@
 @extends('back.adminp')
 @section('title')
-    Қолданушылар
+    Аудандар
 @endsection
 @section('content')
     <div class="pagetitle">
-        <h1>Қолданушылар</h1>
+        <h1>Аудандар</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin') }}">Басты бет</a></li>
-                <li class="breadcrumb-item active">Қолданушылар</li>
+                <li class="breadcrumb-item active">Аудандар</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

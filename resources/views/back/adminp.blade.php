@@ -133,49 +133,49 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="{{ route('admin') }}">
+            <a class="nav-link {{ Route::is('admin')  ? 'active' : 'collapsed' }}" href="{{ route('admin') }}">
                 <i class="bi bi-grid"></i>
                 <span>Басты бет</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('user.index') }}">
+        <li class="nav-item {{ Route::is('user.*')  ? 'active' : '' }}">
+            <a class="nav-link {{ Route::is('user.*')  ? 'active' : 'collapsed' }}" href="{{ route('user.index') }}">
                 <i class="bi bi-people"></i>
                 <span>Қолданушылар</span>
             </a>
         </li><!-- End Profile Page Nav -->
 {{--        <li class="nav-heading">Әкімшілік</li>--}}
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('flat_list') }}">
+            <a class="nav-link {{ Route::is('flat_list')  ? 'active' : 'collapsed' }}" href="{{ route('flat_list') }}">
                 <i class="bi bi-envelope"></i>
                 <span>Өтініштер</span>
             </a>
         </li><!-- End Register Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link {{ Route::is('district.*') || Route::is('hometype.*') || Route::is('recomplex.*') || Route::is('flat.*') ? '' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Мәзір</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="forms-nav" class="nav-content collapse {{ Route::is('district.*') || Route::is('hometype.*') || Route::is('recomplex.*') || Route::is('flat.*')  ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('district.index') }}">
+                    <a href="{{ route('district.index') }}" class="{{ Route::is('district.*')  ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Аудандар</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('hometype.index') }}">
+                    <a href="{{ route('hometype.index') }}" class="{{ Route::is('hometype.*')  ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Уй түрлері</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('recomplex.index') }}">
+                    <a href="{{ route('recomplex.index') }}" class="{{ Route::is('recomplex.*')  ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Тұрғын уйлер</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('flat.index') }}">
+                    <a href="{{ route('flat.index') }}" class="{{ Route::is('flat.*')  ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Пәтерлер</span>
                     </a>
                 </li>
@@ -187,7 +187,7 @@
         <li class="nav-heading">Қорытынды</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-register.html">
+            <a class="nav-link {{ Route::is('flat_report')  ? 'active' : 'collapsed' }}" href="{{ route('flat_report') }}">
                 <i class="bi bi-card-list"></i>
                 <span>Есептеме</span>
             </a>
