@@ -96,8 +96,6 @@
                                                 @php $sum_room2=$user_flat1->raw_count; @endphp
                                             @elseif($user_flat1->rname==='3 бөлмелі')
                                                 @php $sum_room3=$user_flat1->raw_count; @endphp
-                                            @else
-                                                @php $sum_room1=0; $sum_room2=0; $sum_room3=0; @endphp
                                             @endif
                                         @endif
                                     @endforeach
