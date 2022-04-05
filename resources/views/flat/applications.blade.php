@@ -36,6 +36,7 @@
                                 <th scope="col">Бөлме саны</th>
                                 <th scope="col">Жалпы ауданы</th>
                                 <th scope="col">Жалпы суммасы</th>
+                                <th scope="col">Уақыты</th>
                                 <th scope="col">Статусы</th>
                             </tr>
                             </thead>
@@ -51,6 +52,7 @@
                                     <td>{{ $user_flat->rname }}</td>
                                     <td>{{ $user_flat->totalarea }} ш.м</td>
                                     <td>{{ ($user_flat->totalarea)*($user_flat->price) }} т.</td>
+                                    <td>{{ $user_flat->gdate }}</td>
                                     <td><div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ $user_flat->stname }}</div></td>
                                     <td>
 {{--                                        <a href="{{ route('flat.edit', $flat) }}" class="btn btn-success"><i class="ri-edit-box-line"></i></a>--}}

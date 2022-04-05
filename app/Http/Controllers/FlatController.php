@@ -103,7 +103,7 @@ class FlatController extends Controller
             ->leftJoin('rooms as r','r.id', 'f.room_id')
             ->leftJoin('statuses as st','st.id', 'uf.status_id')
             ->leftJoin('recomplexes as re','re.id', 'f.recomplex_id')
-            ->select('re.name as rename', 'f.totalarea', 'r.name as rname', 'st.name as stname', 're.price', 'us.lastname','us.firstname', 'us.patronymic', 'us.tel', 'uf.id', 'uf.status_id')
+            ->select('re.name as rename', 'f.totalarea', 'r.name as rname', 'st.name as stname', 're.price', 'us.lastname','us.firstname', 'us.patronymic', 'us.tel', 'uf.id', 'uf.status_id', 'uf.gdate')
             ->get();
 
 
