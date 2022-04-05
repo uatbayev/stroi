@@ -125,7 +125,7 @@ class FlatController extends Controller
             ->orderBy('re.name')
             ->orderBy('r.name')
             ->get();
-        dd($user_flats);
+//        dd($user_flats);
         //$recomplexes=Recomplex::all();
         $recomplexes_flat=DB::table('flats as f')->leftJoin('recomplexes as re','re.id', 'f.recomplex_id')
             ->select('re.price as price','re.name as name','f.room_id','f.totalarea as totalarea')
