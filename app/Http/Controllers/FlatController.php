@@ -105,6 +105,8 @@ class FlatController extends Controller
             ->leftJoin('recomplexes as re','re.id', 'f.recomplex_id')
             ->select('re.name as rename', 'f.totalarea', 'r.name as rname', 'st.name as stname', 're.price', 'us.lastname','us.firstname', 'us.patronymic', 'us.tel', 'uf.id', 'uf.status_id')
             ->get();
+
+        dd($user_flats);
         return view('flat.applications', compact('user_flats', 'statuses'));
 
     }
