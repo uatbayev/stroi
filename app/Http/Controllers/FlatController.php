@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\Flat;
 use App\Models\Recomplex;
 use App\Models\Room;
@@ -110,7 +111,11 @@ class FlatController extends Controller
         return view('flat.applications', compact('user_flats', 'statuses'));
 
     }
-    public function flat_report(){
+    public function flat_report(Request $request){
+        $district_id = $request['district_id'];
+        if ($district_id == "") {
+            $district_id = '%%';
+        }
         $statuses=Status::all();
         $user_flats=DB::table('users_flats as uf')
             ->leftJoin('users as us','us.id', 'uf.user_id')
@@ -119,6 +124,7 @@ class FlatController extends Controller
             ->leftJoin('statuses as st','st.id', 'uf.status_id')
             ->leftJoin('recomplexes as re','re.id', 'f.recomplex_id')
             ->leftJoin('districts as dis','dis.id', 're.district_id')
+            ->where('dis.id','LIKE', $district_id)
             ->select('dis.name as disname','re.name as rename','r.name as rname',DB::raw("count('uf.*') as raw_count"))
             ->groupBy(['dis.name','re.name','r.name'])
             ->orderBy('dis.name')
@@ -130,7 +136,8 @@ class FlatController extends Controller
         $recomplexes_flat=DB::table('flats as f')->leftJoin('recomplexes as re','re.id', 'f.recomplex_id')
             ->select('re.price as price','re.name as name','f.room_id','f.totalarea as totalarea')
             ->get();
-        return view('flat.report', compact('user_flats', 'statuses', 'recomplexes_flat'));
+        $districts_search=District::all();
+        return view('flat.report', compact('user_flats', 'statuses', 'recomplexes_flat', 'districts_search', 'district_id'));
 
     }
     public function flat_save(Request $request){

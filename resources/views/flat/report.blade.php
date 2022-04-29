@@ -24,6 +24,27 @@
                                 {{ Session::get('info') }}
                             </div>
                     @endif
+                            <form action="">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Аудан бойынша</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select form-select-solid" name="district_id">
+                                            <option value="">Барлығы</option>
+                                            @foreach($districts_search as $district)
+                                                <option
+                                                    value="{{ $district->id }}" {{ $district_id==$district->id ? 'selected':'' }}>{{$district->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row mb-3">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" class="btn btn-sm btn-success">Іздеу</button>
+{{--                                        <a href="{{ url('/getStudentReport') }}"><button class="btn btn-sm btn-danger" type="button">Сбросить</button></a>--}}
+                                    </div>
+                                </div>
+                            </form>
                     <!-- Table with stripped rows -->
                         <table class="table table-bordered">
                             <thead>
