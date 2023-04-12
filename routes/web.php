@@ -30,7 +30,7 @@ Route::middleware('guest')->group(function(){
 });
 
 Route::group(['middleware'=> ['auth']], function (){
-    Route::get('/add_flat/{user_id}/{flat_id}', [\App\Http\Controllers\PageController::class, 'add_flat'])->name('add_flat');
+    Route::post('/add_flat/{flat_id}', [\App\Http\Controllers\PageController::class, 'add_flat'])->name('add_flat');
     Route::get('/application/{user_id}', [\App\Http\Controllers\PageController::class, 'get_application'])->name('application');
 });
 

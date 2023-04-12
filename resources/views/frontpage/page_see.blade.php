@@ -17,9 +17,12 @@
                     <div class="row gx-0">
                         <div class="col-lg-6">
                             <div class="p-4 p-md-5">
-                                <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ $recomplex->district->name }}</div>
-                                <div class="badge bg-success bg-gradient rounded-pill mb-2">{{ $recomplex->hometype->name }}</div>
-                                <div class="badge bg-black bg-gradient rounded-pill mb-2">{{ $recomplex->floor->name }}</div>
+                                <div
+                                    class="badge bg-primary bg-gradient rounded-pill mb-2">{{ $recomplex->district->name }}</div>
+                                <div
+                                    class="badge bg-success bg-gradient rounded-pill mb-2">{{ $recomplex->hometype->name }}</div>
+                                <div
+                                    class="badge bg-black bg-gradient rounded-pill mb-2">{{ $recomplex->floor->name }}</div>
                                 <div class="h2 fw-bolder">{{ $recomplex->name }}</div>
                                 <p>{!! $recomplex->description !!}</p>
                                 <a class="stretched-link text-decoration-none" href="{{ route('page') }}">
@@ -28,7 +31,9 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-6"><img class="card-img-top" src="{{ asset('storage/recomplex/'.$recomplex->photo) }}" alt="..." /></div>
+                        <div class="col-lg-6"><img class="card-img-top"
+                                                   src="{{ asset('storage/recomplex/'.$recomplex->photo) }}" alt="..."/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,26 +48,51 @@
                     <table class="table">
                         <thead>
                         <tr>
-                        <th>#</th>
-                        <th>Бөлме саны</th>
-                        <th>Жалпы ауданы</th>
-                        <th></th>
+                            <th>#</th>
+                            <th>Бөлме саны</th>
+                            <th>Жалпы ауданы</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($flats as $k=>$flat)
-                        <tr>
-                            <td>{{ $k+1 }}</td>
-                            <td>{{ $flat->room->name }}</td>
-                            <td>{{ $flat->totalarea }} ш.м</td>
-                            <td>
-                                @if(Auth::check())
-                                    @if(Auth::user()->isUser() || Auth::user()->isAdmin())
-                                        <a href="{{route('add_flat', [Auth::user()->id, $flat->id])}}" type="button" class="w-100 btn btn-lg btn-outline-primary">Өтінім беру</a>
+                            @php
+                                $userFlat = $userFlats->where('flat_id', $flat->id)->first();
+                            @endphp
+                            <tr>
+                                <td>{{ $k+1 }}</td>
+                                <td>{{ $flat->room->name }}</td>
+                                <td>{{ $flat->totalarea }} ш.м</td>
+                                <td class="text-end text-nowrap">
+                                    @if(Auth::check() && (Auth::user()->isUser() || Auth::user()->isAdmin()))
+                                        @if($userFlat)
+                                            @if ($userFlat->status)
+                                                <div class="d-inline-block">
+                                                    {{ $userFlat->status->name }}
+                                                </div>
+
+                                                @if ($userFlat->status->id == 3)
+                                                    <form action="{{route('add_flat', $flat->id)}}" method="POST"  class="d-inline-block">
+                                                        @csrf
+                                                        <button class="btn btn-sm btn-outline-primary">
+                                                            Өтінім беру
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @else
+                                                Өтінім жіберілді
+                                            @endif
+                                        @else
+                                            <form action="{{route('add_flat', $flat->id)}}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    Өтінім беру
+                                                </button>
+                                            </form>
+                                        @endif
                                     @endif
-                                @endif
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
 
