@@ -23,7 +23,7 @@
                         <a href="{{ route('flat.index') }}" class="btn btn-primary">Артқа</a>
                     </div>
                     <div class="card-body">
-                        <form class="row g-3" action="{{ route('flat.update', $flat) }}" method="post">
+                        <form class="row g-3" action="{{ route('flat.update', $flat) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="col-md-4">
@@ -45,6 +45,11 @@
                             <div class="col-md-4">
                                 <label class="form-label">Жалпы ауданы (ш.м)</label>
                                 <input type="text" name="totalarea" value="{{ old('totalarea', $flat->totalarea) }}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Бөлме схемасы</label>
+                                <input type="file" name="photo_s" class="form-control" value="{{ old('photo_s') }}">
+                                <p><a href="{{asset('storage/flat/'.$flat->photo_s)}}" target="_blank">{{ $flat->photo_s }}</a></p>
                             </div>
                             <div class="row pt-3">
                                 <div class="col-4">

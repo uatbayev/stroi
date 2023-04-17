@@ -43,7 +43,16 @@ class FlatController extends Controller
      */
     public function store(Request $request)
     {
-        Flat::create($request->all());
+        $filename_photo="";
+        if($request->hasFile('photo_s')) {
+            $file = $request->file('photo_s');
+            $extension=$file->getClientOriginalExtension();
+            $filename_photo = time().''.uniqid().'.'.$extension;
+            $file->storeAs('flat',$filename_photo);
+        }
+        $data=$request->all();
+        $data['photo_s']=$filename_photo;
+        Flat::create($data);
         return redirect()->route('flat.index')->with('info', 'Сәтті қосылды!');
     }
 
@@ -80,7 +89,16 @@ class FlatController extends Controller
      */
     public function update(Request $request, Flat $flat)
     {
-        $flat->update($request->all());
+        $filename_photo=$flat->photo_s;
+        if($request->hasFile('photo_s')) {
+            $file = $request->file('photo_s');
+            $extension=$file->getClientOriginalExtension();
+            $filename_photo = time().''.uniqid().'.'.$extension;
+            $file->storeAs('flat',$filename_photo);
+        }
+        $data=$request->all();
+        $data['photo_s']=$filename_photo;
+        $flat->update($data);
         return redirect()->route('flat.index')->with('info', 'Сәтті өңделді!!!');
     }
 

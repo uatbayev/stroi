@@ -23,7 +23,7 @@
                         <a href="{{ route('flat.index') }}" class="btn btn-primary">Артқа</a>
                     </div>
                     <div class="card-body">
-                        <form class="row g-3" action="{{ route('flat.store') }}" method="post">
+                        <form class="row g-3" action="{{ route('flat.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-4">
                                 <label class="form-label">Бөлме саны</label>
@@ -44,6 +44,10 @@
                             <div class="col-md-4">
                                 <label class="form-label">Жалпы ауданы (ш.м)</label>
                                 <input type="text" name="totalarea" value="{{ old('totalarea') }}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Бөлме схемасы</label>
+                                <input type="file" name="photo_s" class="form-control" value="{{ old('photo_s') }}">
                             </div>
 
                             <div class="row pt-3">

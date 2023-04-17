@@ -11,7 +11,7 @@ class Flat extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable=['room_id', 'recomplex_id', 'totalarea'];
+    protected $fillable=['room_id', 'recomplex_id', 'totalarea','photo_s'];
 
     public function room(){
         return $this->belongsTo(Room::class);
